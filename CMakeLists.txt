@@ -8,11 +8,17 @@ set(VERSION "1.2.9")
 option(ASM686 "Enable building i686 assembly implementation")
 option(AMD64 "Enable building amd64 assembly implementation")
 
-set(INSTALL_BIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/bin" CACHE PATH "Installation directory for executables")
-set(INSTALL_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib" CACHE PATH "Installation directory for libraries")
-set(INSTALL_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include" CACHE PATH "Installation directory for headers")
-set(INSTALL_MAN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/man" CACHE PATH "Installation directory for manual pages")
-set(INSTALL_PKGCONFIG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/pkgconfig" CACHE PATH "Installation directory for pkgconfig (.pc) files")
+# Common Configuration
+include(../../build/helper.cmake)
+get_config_file_path(var_config_file)
+get_project_name(var_project_name)
+get_relative_output_dir(var_relative_output_dir)
+
+set(INSTALL_BIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../stage/${var_relative_output_dir}/bin" CACHE PATH "Installation directory for executables")
+set(INSTALL_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../stage/${var_relative_output_dir}/lib" CACHE PATH "Installation directory for libraries")
+set(INSTALL_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../stage/${var_relative_output_dir}/include" CACHE PATH "Installation directory for headers")
+set(INSTALL_MAN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../stage/${var_relative_output_dir}/share/man" CACHE PATH "Installation directory for manual pages")
+set(INSTALL_PKGCONFIG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../stage/${var_relative_output_dir}/share/pkgconfig" CACHE PATH "Installation directory for pkgconfig (.pc) files")
 
 include(CheckTypeSize)
 include(CheckFunctionExists)
